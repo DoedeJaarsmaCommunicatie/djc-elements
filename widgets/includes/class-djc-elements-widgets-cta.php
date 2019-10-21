@@ -23,6 +23,11 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
+        
+        $this->add_control( 'project', [
+            'label'     => 'Project',
+            'type'      => Djc_Elements_Controls_Projects::$type
+        ]);
     
         $this->end_controls_section();
     }

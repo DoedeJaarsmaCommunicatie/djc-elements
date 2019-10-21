@@ -76,6 +76,7 @@ class Djc_Elements {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->define_controls_hooks();
         $this->define_widgets_hooks();
 	}
 
@@ -110,9 +111,16 @@ class Djc_Elements {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-djc-elements-i18n.php';
         
         /**
-         * The class responsible for defining all widgets that are hooked into elementor
+         * The class responsible for defining all widgets that are hooked into
+         * Elementor.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'widgets/class-djc-elements-widgets.php';
+        
+        /**
+         * The class responsible for defining all controls that are hooked into
+         * Elementor.
+         */
+        require_once plugin_dir_path( __DIR__) . 'controls/class-djc-elements-controls.php';
         
 		$this->loader = new Djc_Elements_Loader();
 
@@ -141,6 +149,12 @@ class Djc_Elements {
 	    $this->get_loader()->add_action('elementor/widgets/widgets_registered', $plugin_widget, 'init_widgets');
     }
 
+    private function define_controls_hooks() {
+	    $plugin_controls = new Djc_Elements_Controls($this->get_plugin_name(), $this->get_version());
+	    
+	    $this->get_loader()->add_action( 'elementor/controls/controls_registered', $plugin_controls, 'init_controls');
+    }
+    
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
