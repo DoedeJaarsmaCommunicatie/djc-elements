@@ -55,7 +55,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         $id = $settings['project-cta_posts_ids'][0];
         $reverse = (bool) $settings['reverse'];
         ?>
-        <article class="related-project-banner">
+        <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>
                 <?php $this->image_render($id); ?>
                 <?php $this->content_render($id); ?>
