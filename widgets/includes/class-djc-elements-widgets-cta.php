@@ -79,7 +79,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         ?>
         <main class="related-project-content">
             <h2 class="related-project-title">
-                <a href="<?=$link?>">
+                <a href="<?=$link?>" title="<?= sprintf(__('Bekijk %s', 'djc-elements'), $title) ?>">
                     <?=$title?>
                 </a>
             </h2>
@@ -98,7 +98,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         $link = get_the_permalink($id);
         ?>
         <figure class="related-project-figure">
-            <a href="<?= $link?>" title="<?= sprintf(__('Check out %s', 'djc-elements'), $title) ?>">
+            <a href="<?= $link?>" title="<?= sprintf(__('Bekijk %s', 'djc-elements'), $title) ?>">
                 <img src="<?=$thumbnail?>" alt="<?=$title?>" class="related-project-image" />
             </a>
         </figure>
@@ -109,8 +109,8 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         $title = get_the_title($id);
         $permalink = get_the_permalink($id);
         ?>
-            <a href="<?=$permalink?>" title="<?= sprintf(__('Check out %s', 'djc-elements'), $title)?>" target="_self" class="related-project-button">
-                <?= sprintf(__('Check out %s', 'djc-elements'), $title)?>
+            <a href="<?=$permalink?>" title="<?= sprintf(__('Bekijk %s', 'djc-elements'), $title)?>" target="_self" class="related-project-button">
+                <?= sprintf(__('Bekijk project', 'djc-elements'))?>
             </a>
         <?php
     }
