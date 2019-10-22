@@ -36,8 +36,10 @@ class Djc_Elements_Widgets {
     public function init_widgets() {
         
         require_once __DIR__ . '/includes/class-djc-elements-widgets-cta.php';
+        require_once __DIR__ . '/includes/class-djc-elements-widgets-solutions.php';
         
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_CTA());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Solutions());
         
     }
 }

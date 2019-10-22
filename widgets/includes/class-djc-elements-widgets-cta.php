@@ -73,6 +73,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
     protected function content_render($id) {
         add_filter('excerpt_more','__return_false');
         add_filter('excerpt_length', static function () { return 35; });
+        
         $title = get_the_title($id);
         $excerpt = get_the_excerpt($id);
         $link = get_the_permalink($id);
@@ -90,6 +91,9 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
             <?php $this->button_render($id); ?>
         </main>
         <?php
+    
+        add_filter('excerpt_more', static function () { return '[&hellip;]'; });
+        add_filter('excerpt_length', static function () { return 55; });
     }
     
     protected function image_render($id) {
