@@ -203,8 +203,8 @@ class Djc_Elements {
     protected static function check_for_updates() {
         Puc_v4_Factory::buildUpdateChecker(
             static::$github_url,
-            DJC_TYPES_FILE,
-            'djc-types',
+            DJC_ELEMENTS_FILE,
+            'djc-elements',
             '5'
         );
     }

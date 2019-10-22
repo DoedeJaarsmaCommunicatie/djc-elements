@@ -17,7 +17,7 @@
  * Plugin URI:        https://doedejaarsma.nl/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            Mitch Hijlkema
+ * Author:            Doede Jaarsma communicatie
  * Author URI:        https://doedejaarsma.nl/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -36,6 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'DJC_ELEMENTS_VERSION', '1.0.0' );
+define( 'DJC_ELEMENTS_FILE', __FILE__ );
 
 /**
  * The code that runs during plugin activation.
@@ -74,6 +75,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-djc-elements.php';
  * @since    1.0.0
  */
 function run_djc_elements() {
+    require_once plugin_dir_path( __FILE__) . 'vendor/autoload.php';
 
 	$plugin = new Djc_Elements();
 	$plugin->run();
