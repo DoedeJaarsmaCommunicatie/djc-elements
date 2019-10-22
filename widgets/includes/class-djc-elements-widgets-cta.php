@@ -72,7 +72,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
      */
     protected function content_render($id) {
         add_filter('excerpt_more','__return_false');
-    
+        add_filter('excerpt_length', static function () { return 35; });
         $title = get_the_title($id);
         $excerpt = get_the_excerpt($id);
         ?>
