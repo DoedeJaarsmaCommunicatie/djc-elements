@@ -75,12 +75,19 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         add_filter('excerpt_length', static function () { return 35; });
         $title = get_the_title($id);
         $excerpt = get_the_excerpt($id);
+        $link = get_the_permalink($id);
         ?>
         <main class="related-project-content">
-            <h2 class="related-project-title"><?=$title?></h2>
-            <p class="related-project-excerpt">
-                <?=$excerpt?>
-            </p>
+            <h2 class="related-project-title">
+                <a href="<?=$link?>">
+                    <?=$title?>
+                </a>
+            </h2>
+            <section class="related-project-pills">
+                <?php $this->services_render($id); ?>
+            </section>
+            <p class="related-project-excerpt"><?=$excerpt?></p>
+            <?php $this->button_render($id); ?>
         </main>
         <?php
     }
@@ -88,10 +95,49 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
     protected function image_render($id) {
         $title = get_the_title($id);
         $thumbnail = get_the_post_thumbnail_url($id);
+        $link = get_the_permalink($id);
         ?>
         <figure class="related-project-figure">
-            <img src="<?=$thumbnail?>" alt="<?=$title?>" class="related-project-image" />
+            <a href="<?= $link?>" title="<?= sprintf(__('Check out %s', 'djc-elements'), $title) ?>">
+                <img src="<?=$thumbnail?>" alt="<?=$title?>" class="related-project-image" />
+            </a>
         </figure>
+        <?php
+    }
+    
+    protected function button_render($id) {
+        $title = get_the_title($id);
+        $permalink = get_the_permalink($id);
+        ?>
+            <a href="<?=$permalink?>" title="<?= sprintf(__('Check out %s', 'djc-elements'), $title)?>" target="_self" class="related-project-button">
+                <?= sprintf(__('Check out %s', 'djc-elements'), $title)?>
+            </a>
+        <?php
+    }
+    
+    protected function services_render($id) {
+        if (!function_exists('get_field')) {
+            return;
+        }
+        
+        $services = get_field( 'dienst', $id);
+        foreach ($services as $service) {
+            $this->pill_generator($service);
+        }
+    }
+    
+    /**
+     * @param WP_Post $post
+     */
+    protected function pill_generator($post) {
+        $id = $post->ID;
+        $type = $post->post_type;
+        $title = $post->post_title;
+        $link = get_the_permalink($id);
+        ?>
+            <a href="<?=$link?>" class="related-pill" data-title="<?=$title?>" data-id="<?=$id?>" data-type="<?=$type?>">
+                <?=$title?>
+            </a>
         <?php
     }
 }
