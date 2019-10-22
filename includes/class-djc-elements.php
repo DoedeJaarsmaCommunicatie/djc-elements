@@ -56,8 +56,11 @@ class Djc_Elements {
 	 * @var      string    $version    The current version of the plugin.
 	 */
 	protected $version;
-
-	/**
+    
+    protected static $github_url = 'https://github.com/DoedeJaarsmaCommunicatie/djc-elements';
+    
+    
+    /**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -78,6 +81,8 @@ class Djc_Elements {
 		$this->set_locale();
 		$this->define_controls_hooks();
         $this->define_widgets_hooks();
+        
+        static::check_for_updates();
 	}
 
 	/**
@@ -194,5 +199,14 @@ class Djc_Elements {
 	public function get_version() {
 		return $this->version;
 	}
+    
+    protected static function check_for_updates() {
+        Puc_v4_Factory::buildUpdateChecker(
+            static::$github_url,
+            DJC_TYPES_FILE,
+            'djc-types',
+            '5'
+        );
+    }
 
 }
