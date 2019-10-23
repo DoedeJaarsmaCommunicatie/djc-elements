@@ -28,7 +28,6 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
         <section class="subservice-wrapper diensten">
             <?php
                 foreach ($children as $child) {
-                    
                     $this->render_card($child);
                 } ?>
         </section>
@@ -39,11 +38,11 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
      * @param WP_Post $post the post to render.
      */
     private function render_card($post) {
-        add_filter('excerpt_more','__return_false');
         add_filter('excerpt_length', static function () { return 15; });
+        
         $id = $post->ID;
         $title = get_the_title($id);
-        $excerpt = get_the_excerpt($id);
+        $excerpt = str_replace('[&hellip;]', '', get_the_excerpt($id));
         $link = get_the_permalink($id);
         ?>
             <article class="subservice dienst">
@@ -58,7 +57,7 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
                 </a>
             </article>
         <?php
-        add_filter('excerpt_more', static function () { return '[&hellip;]'; });
+        
         add_filter('excerpt_length', static function () { return 55; });
     }
 }

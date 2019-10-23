@@ -40,12 +40,16 @@ class Djc_Elements_Widgets {
         require_once __DIR__ . '/includes/class-djc-elements-widgets-content.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-heading.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-button.php';
+        require_once __DIR__ . '/includes/class-djc-elements-widgets-services.php';
+        require_once __DIR__ . '/includes/class-djc-elements-widgets-portfolio.php';
         
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_CTA());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Content());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Heading());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Button());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_widgets_Portfolio());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Solutions());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Services());
         
     }
 }
