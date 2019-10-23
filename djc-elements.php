@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://doedejaarsma.nl/
- * @since             1.0.1
+ * @since             1.0.0
  * @package           Djc_Elements
  *
  * @wordpress-plugin
  * Plugin Name:       Elements
  * Plugin URI:        https://doedejaarsma.nl/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Doede Jaarsma communicatie
  * Author URI:        https://doedejaarsma.nl/
  * License:           GPL-2.0+
@@ -32,10 +32,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
  */
-define( 'DJC_ELEMENTS_VERSION', '1.0.1' );
+define( 'DJC_ELEMENTS_VERSION', '1.1.0' );
 define( 'DJC_ELEMENTS_FILE', __FILE__ );
 
 /**
