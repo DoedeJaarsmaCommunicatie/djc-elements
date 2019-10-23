@@ -33,7 +33,7 @@ class Djc_Elements_Widgets {
         
     }
     
-    public function init_widgets() {
+    private function includes() {
         
         require_once __DIR__ . '/includes/class-djc-elements-widgets-cta.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-solutions.php';
@@ -42,6 +42,14 @@ class Djc_Elements_Widgets {
         require_once __DIR__ . '/includes/class-djc-elements-widgets-button.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-services.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-portfolio.php';
+        
+        require_once __DIR__ . '/Models/class-djc-elements-pill.php';
+        require_once __DIR__ . '/Models/Djc_Elements_Project_Banner.php';
+    }
+    
+    public function init_widgets() {
+        
+        $this->includes();
         
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_CTA());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Content());
