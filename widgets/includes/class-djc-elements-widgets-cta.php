@@ -28,9 +28,9 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
             \ElementorPro\Modules\QueryControl\Controls\Group_Control_Query::get_type(),
             [
                 'name' => $this->get_name(),
-                'presets' => [ 'full' ],
+                'presets' => [ 'include', 'exclude' ],
                 'exclude' => [
-                    'posts_per_page', //use the one from Layout section
+                    'posts_per_page',
                 ],
             ]
         );
@@ -50,10 +50,33 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         $this->register_content_controls();
     }
     
-    protected function render() {
+    protected function render(): void {
         $settings = $this->get_settings();
+        if (count($settings['project-cta_posts_ids']) === 0) {
+            return;
+        }
+        
+        if (count($settings['project-cta_posts_ids']) > 1) {
+            $loop = 1;
+            foreach ($settings['project-cta_posts_ids'] as $id) {
+                // Makes the loop go reverse -> not reverse or vice versa.
+                $reverse = ((bool) $settings['reverse'])?
+                    $loop % 2 !== 0 :
+                    $loop % 2 === 0;
+                
+                $this->single_render($id, $reverse);
+                $loop++;
+            }
+            return;
+        }
+        
         $id = $settings['project-cta_posts_ids'][0];
         $reverse = (bool) $settings['reverse'];
+        
+        $this->single_render($id, $reverse);
+    }
+    
+    protected function single_render($id, $reverse = false): void {
         ?>
         <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>
@@ -70,12 +93,11 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
     /**
      * @param int $id
      */
-    protected function content_render($id) {
-        add_filter('excerpt_more','__return_false');
+    protected function content_render($id): void {
         add_filter('excerpt_length', static function () { return 35; });
         
         $title = get_the_title($id);
-        $excerpt = get_the_excerpt($id);
+        $excerpt = str_replace('[&hellip;]', '', get_the_excerpt($id));
         $link = get_the_permalink($id);
         ?>
         <main class="related-project-content">
@@ -92,11 +114,10 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         </main>
         <?php
     
-        add_filter('excerpt_more', static function () { return '[&hellip;]'; });
         add_filter('excerpt_length', static function () { return 55; });
     }
     
-    protected function image_render($id) {
+    protected function image_render($id): void {
         $title = get_the_title($id);
         $thumbnail = get_the_post_thumbnail_url($id);
         $link = get_the_permalink($id);
@@ -109,7 +130,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         <?php
     }
     
-    protected function button_render($id) {
+    protected function button_render($id): void {
         $title = get_the_title($id);
         $permalink = get_the_permalink($id);
         ?>
@@ -119,12 +140,12 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         <?php
     }
     
-    protected function services_render($id) {
+    protected function services_render($id): void {
         if (!function_exists('get_field')) {
             return;
         }
-        
         $services = get_field( 'dienst', $id);
+        
         foreach ($services as $service) {
             $this->pill_generator($service);
         }

@@ -22,11 +22,15 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
             'numberposts' => -1,
             'post_status' => 'publish'
         ]);
-        ?>
+        if (count($children) === 0) {
+            return;
+        } ?>
         <section class="subservice-wrapper diensten">
             <?php
-            foreach ($children as $child)
-                $this->render_card($child); ?>
+                foreach ($children as $child) {
+                    
+                    $this->render_card($child);
+                } ?>
         </section>
         <?php
     }
@@ -44,7 +48,7 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
         ?>
             <article class="subservice dienst">
                 <h3 class="subservice-title">
-                    <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>" class="subservice-fab">
+                    <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>">
                         <?=$title?>
                     </a>
                 </h3>
