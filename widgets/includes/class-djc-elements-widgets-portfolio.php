@@ -68,7 +68,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         $url = get_the_permalink(static::get_current_object_id());
         
         $url .= "?page=$page_to";
-        if ($_GET['service']) {
+        if (isset($_GET['service'])) {
             $url .= '&service=' . $_GET['service'];
         }
         ?>
