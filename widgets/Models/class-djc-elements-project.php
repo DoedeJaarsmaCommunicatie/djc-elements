@@ -65,7 +65,7 @@ class Djc_Elements_Project {
     }
     
     public function setThumbnail(): void {
-        $url = get_the_post_thumbnail_url($this->id);
+        $url = get_the_post_thumbnail_url($this->id, 'large');
         $this->thumbnail = $url !== false ?
             $url :
             '//via.placeholder.com/1200x600';
