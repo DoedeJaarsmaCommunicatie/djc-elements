@@ -33,7 +33,7 @@ class Djc_Elements_Widgets {
         
     }
     
-    private function includes() {
+    private function includes(): void {
         
         require_once __DIR__ . '/includes/class-djc-elements-widgets-cta.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-solutions.php';
@@ -43,13 +43,26 @@ class Djc_Elements_Widgets {
         require_once __DIR__ . '/includes/class-djc-elements-widgets-services.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-portfolio.php';
         
+        // Require the models to make sure all widgets can call these.
         require_once __DIR__ . '/Models/class-djc-elements-pill.php';
-        require_once __DIR__ . '/Models/Djc_Elements_Project_Banner.php';
+        require_once __DIR__ . '/Models/class-djc-elements-service.php';
+        require_once __DIR__ . '/Models/class-djc-elements-project-banner.php';
     }
     
-    public function init_widgets() {
+    /**
+     * Is hooked in main class.
+     *
+     * This function registers all the custom widgets with elementor.
+     *
+     * @since 1.0.0
+     * @return void
+     * @throws Exception
+     */
+    public function init_widgets(): void {
         
         $this->includes();
+        
+        do_action('djc-elements/widgets/preload');
         
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_CTA());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Content());
@@ -58,6 +71,8 @@ class Djc_Elements_Widgets {
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_widgets_Portfolio());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Solutions());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Services());
+        
+        do_action('djc-elements/widgets/loaded');
         
     }
 }

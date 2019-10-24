@@ -9,7 +9,7 @@ class Djc_Elements_Widgets_Button extends \Elementor\Widget_Button {
         return 'DJC ' . parent::get_title();
     }
     
-    protected static function get_button_types() {
+    protected static function get_button_types(): array {
         return [
             'black'             => __('Zwart', 'djc-elements'),
             'black-outlined'    => __('Zwart omlijnd', 'djc-elements'),
@@ -20,7 +20,7 @@ class Djc_Elements_Widgets_Button extends \Elementor\Widget_Button {
         ];
     }
     
-    protected function _register_controls() {
+    protected function _register_controls(): void {
         parent::_register_controls();
         
         $this->start_controls_section(
@@ -45,7 +45,7 @@ class Djc_Elements_Widgets_Button extends \Elementor\Widget_Button {
         $this->end_controls_section();
     }
     
-    protected function render() {
+    protected function render(): void {
         $settings = $this->get_settings_for_display();
         $this->add_render_attribute('button', 'class', ['btn', 'djc-button', $settings['button_type_style']]);
         

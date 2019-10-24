@@ -14,14 +14,9 @@ class Djc_Elements_Widgets_Services extends \Elementor\Widget_Base {
         return 'eicon-slider-push';
     }
     
-    protected function render() {
+    protected function render(): void {
         $current = get_queried_object_id();
-        $services = get_posts([
-            'post_type'     => 'dienst',
-            'exclude'       => [ $current ],
-            'numberposts'   => -1,
-            'post_parent'   => 0
-        ]);
+        $services = Djc_Elements_Service::all(-1, 0, $current);
         
         if (count($services) === 0) {
             return;
@@ -38,15 +33,12 @@ class Djc_Elements_Widgets_Services extends \Elementor\Widget_Base {
         }
     
     /**
-     * @param \WP_Post $post
+     * @param Djc_Elements_Service $post
      */
-    private function render_card($post) {
-        add_filter('excerpt_length', static function () { return 15; });
-        
-        $id = $post->ID;
-        $title = get_the_title($id);
-        $excerpt = str_replace('[&hellip;]', '', get_the_excerpt($id));
-        $link = get_the_permalink($id); ?>
+    private function render_card($post): void {
+        $title = $post->title;
+        $excerpt = $post->excerpt;
+        $link = $post->link; ?>
         <article class="service dienst">
             <h3 class="service-title">
                 <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>">
@@ -59,7 +51,5 @@ class Djc_Elements_Widgets_Services extends \Elementor\Widget_Base {
             </a>
         </article>
         <?php
-        
-        add_filter('excerpt_length', static function () { return 55; });
     }
 }

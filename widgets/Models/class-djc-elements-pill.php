@@ -33,7 +33,7 @@ class Djc_Elements_Pill {
     /**
      * @param \WP_Post $post
      */
-    protected function instantiateWpPost($post) {
+    protected function instantiateWpPost($post): void {
         $this->id = $post->ID;
         $this->type = $post->post_type;
         $this->title = $post->post_title;
@@ -43,14 +43,14 @@ class Djc_Elements_Pill {
     /**
      * @param int $post
      */
-    protected function instantiate($post) {
+    protected function instantiate($post): void {
         $this->id = $post;
         $this->type = get_post_type($post);
         $this->title = get_the_title($post);
         $this->setLink();
     }
     
-    public function setLink() {
+    public function setLink(): void {
         $this->link = get_permalink($this->id);
     }
 }
