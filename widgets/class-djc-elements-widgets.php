@@ -43,10 +43,12 @@ class Djc_Elements_Widgets {
         require_once __DIR__ . '/includes/class-djc-elements-widgets-button.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-services.php';
         require_once __DIR__ . '/includes/class-djc-elements-widgets-portfolio.php';
+        require_once __DIR__ . '/includes/class-djc-elements-widgets-employee.php';
         
         // Require the models to make sure all widgets can call these.
         require_once __DIR__ . '/Models/class-djc-elements-pill.php';
         require_once __DIR__ . '/Models/class-djc-elements-project.php';
+        require_once __DIR__ . '/Models/class-djc-elements-employee.php';
         require_once __DIR__ . '/Models/class-djc-elements-service.php';
         require_once __DIR__ . '/Models/class-djc-elements-project-banner.php';
     }
@@ -66,10 +68,11 @@ class Djc_Elements_Widgets {
         
         do_action('djc-elements/widgets/preload');
         
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Button());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_CTA());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Content());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Employee());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Heading());
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Button());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_widgets_Portfolio());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Solutions());
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Djc_Elements_Widgets_Services());
