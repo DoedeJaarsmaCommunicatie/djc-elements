@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 use Elementor\Widget_Base;
 
@@ -77,7 +78,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
     }
     
     protected function single_render($id, $reverse = false): void {
-        $project = new Djc_Elements_Project_Banner($id);
+        $project = Djc_Elements_Project_Banner::find($id);
         ?>
         <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>

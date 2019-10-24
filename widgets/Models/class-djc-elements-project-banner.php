@@ -1,74 +1,8 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
-
-class Djc_Elements_Project_Banner {
-    public $id;
-    public $link;
-    public $title;
-    public $excerpt;
-    public $thumbnail;
-    
-    /**
-     * @var \WP_Post $post
-     */
-    public $post;
-    
-    /**
-     * Djc_Elements_Project_Banner constructor.
-     *
-     * @param \WP_Post|int $post
-     */
-    public function __construct($post) {
-        if ($post instanceof \WP_Post) {
-            $this->constructWpPost($post);
-        } else {
-            $this->construct($post);
-        }
-    }
-    
-    /**
-     * @param \WP_Post $post
-     */
-    public function constructWpPost($post): void {
-        $this->id = $post->ID;
-        $this->title = $post->post_title;
-        $this->post = $post;
-        $this->setThumbnail();
-        $this->setExcerpt();
-        $this->setLink();
-    }
-    
-    /**
-     * @param int $id
-     */
-    public function construct($id): void {
-        $this->id = $id;
-        $this->title = get_the_title($this->id);
-        $this->post = get_post($id);
-        $this->setThumbnail();
-        $this->setExcerpt();
-        $this->setLink();
-    }
-    
-    public function setLink(): void {
-        $this->link = get_permalink($this->id);
-    }
-    
-    public function setExcerpt(): void {
-        $excerpt = $this->post->post_excerpt !== '' ?
-            $this->post->post_excerpt :
-            $this->post->post_content;
-        
-        $this->excerpt = wp_trim_words($excerpt, 35);
-    }
-    
-    public function setThumbnail(): void {
-        $url = get_the_post_thumbnail_url($this->id);
-        $this->thumbnail = $url !== false ?
-            $url :
-            '//via.placeholder.com/1200x600';
-    }
-    
+class Djc_Elements_Project_Banner extends Djc_Elements_Project {
+   
     public function renderContent(): void {
         ?>
         <main class="related-project-content">

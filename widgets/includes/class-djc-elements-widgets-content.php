@@ -1,8 +1,7 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 use Elementor\Widget_Text_Editor;
-
-defined('ABSPATH') || die;
 
 class Djc_Elements_Widgets_Content extends Widget_Text_Editor {
     public function get_title(): string {

@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 use Elementor\Widget_Base;
 

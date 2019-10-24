@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Widgets {
     /**
@@ -45,6 +46,7 @@ class Djc_Elements_Widgets {
         
         // Require the models to make sure all widgets can call these.
         require_once __DIR__ . '/Models/class-djc-elements-pill.php';
+        require_once __DIR__ . '/Models/class-djc-elements-project.php';
         require_once __DIR__ . '/Models/class-djc-elements-service.php';
         require_once __DIR__ . '/Models/class-djc-elements-project-banner.php';
     }

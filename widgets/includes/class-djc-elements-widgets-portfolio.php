@@ -1,5 +1,5 @@
 <?php
-defined('ABSPATH') || exit;
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     protected static $current_page_cache = null;
@@ -96,7 +96,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     }
     
     protected function single_render($id, $reverse = false): void {
-        $project = new Djc_Elements_Project_Banner($id);
+        $project = Djc_Elements_Project_Banner::find($id);
         ?>
         <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>

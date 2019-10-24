@@ -1,5 +1,5 @@
 <?php
-
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Pill {
     public $id;

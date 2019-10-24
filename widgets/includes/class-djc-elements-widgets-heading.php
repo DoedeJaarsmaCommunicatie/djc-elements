@@ -1,5 +1,5 @@
 <?php
-defined('ABSPATH') || exit; // exit if accessed directly
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Widgets_Heading extends \Elementor\Widget_Heading {
     public function get_title() {

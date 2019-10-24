@@ -1,5 +1,5 @@
 <?php
-defined('ABSPATH') || exit;
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Widgets_Services extends \Elementor\Widget_Base {
     public function get_name() {

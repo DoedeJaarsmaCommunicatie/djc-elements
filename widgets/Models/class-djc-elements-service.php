@@ -1,6 +1,6 @@
 <?php
 
-defined('ABSPATH') || exit;
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Service {
     protected static $service_cache = [];
@@ -98,7 +98,7 @@ class Djc_Elements_Service {
         $self = [];
         
         foreach($services as $service) {
-            $self []= new self($service);
+            $self []= new static($service);
         }
         
         return static::$services_cache[$key] = $self;
@@ -116,7 +116,7 @@ class Djc_Elements_Service {
             return static::$services_cache[$id];
         }
         
-        return static::$service_cache[$id] = new self($id);
+        return static::$service_cache[$id] = new static($id);
     }
     
     /**
@@ -131,6 +131,6 @@ class Djc_Elements_Service {
             return static::$services_cache[$post->ID];
         }
     
-        return static::$service_cache[$post->ID] = new self($post);
+        return static::$service_cache[$post->ID] = new static($post);
     }
 }

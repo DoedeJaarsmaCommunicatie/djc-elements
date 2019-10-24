@@ -1,8 +1,7 @@
 <?php
+defined('ABSPATH') || exit; // Exit if accessed directly.
 
 use Elementor\Controls_Manager;
-
-defined('ABSPATH') || exit; // exit if accessed directly.
 
 class Djc_Elements_Widgets_Button extends \Elementor\Widget_Button {
     public function get_title(): string {
