@@ -30,13 +30,17 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     protected function pagination_render(): void {
         $projects = static::count_projects();
         $pages = (int) ceil($projects / 5);
-        
-        for ($i = 1; $i <= $pages; $i++) {
-            $is_active = ( self::get_current_pageId() > 0) ?
-                $i === self::get_current_pageId() :
-                $i === ( self::get_current_pageId() + 1);
-            $this->pagination_button_render($i, $i, $is_active);
-        }
+        ?>
+        <aside class="pagination-wrapper">
+        <?php
+            for ($i = 1; $i <= $pages; $i++) {
+                $is_active = ( self::get_current_pageId() > 0) ?
+                    $i === self::get_current_pageId() :
+                    $i === ( self::get_current_pageId() + 1);
+                $this->pagination_button_render($i, $i, $is_active);
+            } ?>
+        </aside>
+        <?php
     }
     
     protected function filter_render(): void {

@@ -74,9 +74,9 @@ class Djc_Elements_Service {
      * @param int      $offset
      * @param bool|int $exclude_self
      *
-     * @return int[]|mixed|WP_Post[]
+     * @return self[]|[]
      */
-    public static function all($limit = -1, $offset = 0, $exclude_self = false) {
+    public static function all($limit = -1, $offset = 0, $exclude_self = false): array {
         $key = "dienst_{$limit}_{$offset}";
         if (isset(static::$services_cache[$key])) {
             return static::$services_cache[$key];
