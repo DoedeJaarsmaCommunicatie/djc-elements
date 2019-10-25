@@ -41,13 +41,13 @@ class Djc_Elements_Widgets_Services extends \Elementor\Widget_Base {
         $link = $post->link; ?>
         <article class="service dienst">
             <h3 class="service-title">
-                <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>">
+                <a href="<?=$link?>" target="_self" title="Lees meer over <?=$title?>">
                     <?=$title?>
                 </a>
             </h3>
             <p class="service-content"><?=$excerpt?></p>
-            <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>" class="service-fab subservice-fab">
-                <i class="fas fa-chevron-right"></i>
+            <a href="<?=$link?>" target="_self" title="Lees meer over <?=$title?>" class="service-fab subservice-fab">
+                Lees meer <i class="fas fa-chevron-right"></i>
             </a>
         </article>
         <?php

@@ -48,13 +48,13 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
         ?>
             <article class="subservice dienst">
                 <h3 class="subservice-title">
-                    <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>">
+                    <a href="<?=$link?>" target="_self" title="Lees meer over <?=$title?>">
                         <?=$title?>
                     </a>
                 </h3>
                 <p class="subservice-content"><?=$excerpt?></p>
-                <a href="<?=$link?>" target="_self" title="Bekijk <?=$title?>" class="subservice-fab">
-                    <i class="fas fa-chevron-right"></i>
+                <a href="<?=$link?>" target="_self" title="Lees meer over <?=$title?>" class="subservice-fab">
+                    Lees meer <i class="fas fa-chevron-right"></i>
                 </a>
             </article>
         <?php

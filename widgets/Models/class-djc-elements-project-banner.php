@@ -34,6 +34,10 @@ class Djc_Elements_Project_Banner extends Djc_Elements_Project {
         }
         $services = get_field( 'dienst', $this->id);
         
+        if (!$services) {
+            return;
+        }
+        
         foreach ($services as $service) {
             $pill = new Djc_Elements_Pill($service);
             $pill->render();

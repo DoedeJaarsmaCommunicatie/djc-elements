@@ -4,6 +4,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly.
 class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     protected static $current_page_cache = null;
     protected static $current_page_id = null;
+    protected static $requested_service_cache = null;
     
     public function get_name() {
         return 'projects-portfolio';
@@ -62,7 +63,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     protected function filter_button_render($service): void {
         $url = get_the_permalink(static::get_current_object_id());
         ?>
-        <a href="<?=$url?>?service=<?=$service->ID?>" class="project-filter" target="_self" data-slug="<?=sanitize_title($service->post_title)?>" data-id="<?=$service->ID?>">
+        <a href="<?=$url?>?<?=static::get_parameter_name()?>=<?=$service->ID?>" class="project-filter" target="_self" data-slug="<?=sanitize_title($service->post_title)?>" data-id="<?=$service->ID?>">
             <?=$service->post_title?>
         </a>
         <?php
@@ -73,7 +74,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         
         $url .= "?page=$page_to";
         if (isset($_GET[static::get_parameter_name()])) {
-            $url .= '&service=' . $_GET[static::get_parameter_name()];
+            $url .= '&' . static::get_parameter_name() .'=' . static::get_service_parameter();
         }
         ?>
         <a href="<?=$url?>" class="pagination <?=$is_active ? 'active': ''?>">
@@ -111,7 +112,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
     }
     
     protected static function get_current_pageId() {
-        if (static::$current_page_cache) {
+        if (null !== static::$current_page_cache) {
             return static::$current_page_cache;
         }
         return static::$current_page_cache = get_query_var('page', 1);
@@ -150,7 +151,7 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
             $args['meta_query']   = [
                 [
                     'key'       => 'dienst',
-                    'value'     => '"' . $_GET[static::get_parameter_name()] . '"',
+                    'value'     => '"' . static::get_service_parameter() . '"',
                     'compare'   => 'LIKE'
                 ]
             ];
@@ -159,7 +160,14 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         return $args;
     }
     
+    protected static function get_service_parameter() {
+        if (static::$requested_service_cache) {
+            return static::$requested_service_cache;
+        }
+        return static::$requested_service_cache = $_GET[static::get_parameter_name()];
+    }
+    
     protected static function get_parameter_name() {
-        return 'dienst';
+        return 'diensten';
     }
 }
