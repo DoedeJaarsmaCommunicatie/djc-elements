@@ -72,8 +72,8 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         $url = get_the_permalink(static::get_current_object_id());
         
         $url .= "?page=$page_to";
-        if (isset($_GET['service'])) {
-            $url .= '&service=' . $_GET['service'];
+        if (isset($_GET[static::get_parameter_name()])) {
+            $url .= '&service=' . $_GET[static::get_parameter_name()];
         }
         ?>
         <a href="<?=$url?>" class="pagination <?=$is_active ? 'active': ''?>">
@@ -146,16 +146,20 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
             'fields'        => 'ids'
         ];
     
-        if (isset($_GET['service'])) {
+        if (isset($_GET[static::get_parameter_name()])) {
             $args['meta_query']   = [
                 [
                     'key'       => 'dienst',
-                    'value'     => '"' . $_GET['service'] . '"',
+                    'value'     => '"' . $_GET[static::get_parameter_name()] . '"',
                     'compare'   => 'LIKE'
                 ]
             ];
         }
         
         return $args;
+    }
+    
+    protected static function get_parameter_name() {
+        return 'dienst';
     }
 }
