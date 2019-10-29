@@ -43,7 +43,7 @@ class Djc_Elements_Widgets_Solutions extends Widget_Base {
         
         $id = $post->ID;
         $title = get_the_title($id);
-        $excerpt = str_replace('[&hellip;]', '', get_the_excerpt($id));
+        $excerpt = str_replace('[&hellip;]', '&hellip;', get_the_excerpt($id));
         $link = get_the_permalink($id);
         ?>
             <article class="subservice dienst">

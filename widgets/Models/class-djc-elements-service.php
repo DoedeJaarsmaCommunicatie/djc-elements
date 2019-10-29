@@ -52,7 +52,7 @@ class Djc_Elements_Service {
     }
     
     public function getExcerpt() {
-        return str_replace('[&hellip;]', '', $this->excerpt);
+        return str_replace('[&hellip;]', '..', $this->excerpt);
     }
     
     public function setLink(): void {
@@ -64,7 +64,7 @@ class Djc_Elements_Service {
             $this->post->post_excerpt :
             $this->post->post_content;
         
-        $this->excerpt = wp_trim_words($excerpt, 15);
+        $this->excerpt = wp_trim_words( $excerpt, 15 ) . '..';
     }
     
     /**
