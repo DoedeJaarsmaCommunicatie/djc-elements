@@ -51,6 +51,7 @@ class Djc_Elements_Project_Banner extends Djc_Elements_Project {
                 <img
                      <?php if ($use_lazyload): ?>
                      data-src="<?=$this->thumbnail?>"
+                     src="#"
                      <?php else: ?>
                      src="<?=$this->thumbnail?>"
                      <?php endif; ?>

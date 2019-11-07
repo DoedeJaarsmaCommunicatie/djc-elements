@@ -49,6 +49,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
             [
                 'label'     => __('Use Lazy Loading', 'djc-elements'),
                 'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default'   => 'yes'
             ]
         );
     
