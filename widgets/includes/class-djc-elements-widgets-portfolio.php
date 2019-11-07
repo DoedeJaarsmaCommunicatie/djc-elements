@@ -101,11 +101,11 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         ?>
         <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>
-                <?php $project->renderImage(); ?>
+                <?php $project->renderImage(true); ?>
                 <?php $project->renderContent(); ?>
             <?php else: ?>
                 <?php $project->renderContent(); ?>
-                <?php $project->renderImage(); ?>
+                <?php $project->renderImage(true); ?>
             <?php endif; ?>
         </article>
         <?php

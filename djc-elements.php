@@ -16,7 +16,7 @@
  * Plugin Name:       Elements
  * Plugin URI:        https://doedejaarsma.nl/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.2.2
+ * Version:           1.3.0
  * Author:            Doede Jaarsma communicatie
  * Author URI:        https://doedejaarsma.nl/
  * License:           GPL-2.0+
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'DJC_ELEMENTS_VERSION', '1.2.2' );
+define( 'DJC_ELEMENTS_VERSION', '1.3.0' );
 define( 'DJC_ELEMENTS_FILE', __FILE__ );
 
 /**

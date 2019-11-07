@@ -43,6 +43,14 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
                 'type'      => \Elementor\Controls_Manager::SWITCHER
             ]
         );
+        
+        $this->add_control(
+            'lazy_load',
+            [
+                'label'     => __('Use Lazy Loading', 'djc-elements'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+            ]
+        );
     
         $this->end_controls_section();
     }
@@ -65,7 +73,7 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
                     $loop % 2 !== 0 :
                     $loop % 2 === 0;
                 
-                $this->single_render($id, $reverse);
+                $this->single_render($id, $reverse, (bool) $settings['lazy_load']);
                 $loop++;
             }
             return;
@@ -74,19 +82,19 @@ class Djc_Elements_Widgets_CTA extends Widget_Base {
         $id = $settings['project-cta_posts_ids'][0];
         $reverse = (bool) $settings['reverse'];
         
-        $this->single_render($id, $reverse);
+        $this->single_render($id, $reverse, (bool) $settings['lazy_load']);
     }
     
-    protected function single_render($id, $reverse = false): void {
+    protected function single_render($id, $reverse = false, $use_lazyloading = false): void {
         $project = Djc_Elements_Project_Banner::find($id);
         ?>
         <article class="related-project-banner" data-reversed="<?=$reverse?>" data-id="<?=$id?>">
             <?php if ($reverse): ?>
-                <?php $project->renderImage(); ?>
+                <?php $project->renderImage($use_lazyloading); ?>
                 <?php $project->renderContent(); ?>
             <?php else: ?>
                 <?php $project->renderContent(); ?>
-                <?php $project->renderImage(); ?>
+                <?php $project->renderImage($use_lazyloading); ?>
             <?php endif; ?>
         </article>
         <?php

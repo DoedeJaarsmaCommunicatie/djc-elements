@@ -44,11 +44,18 @@ class Djc_Elements_Project_Banner extends Djc_Elements_Project {
         }
     }
     
-    public function renderImage(): void {
+    public function renderImage($use_lazyload = false): void {
         ?>
         <figure class="related-project-figure">
             <a href="<?=$this->link?>" title="<?= sprintf(__('Bekijk %s', 'djc-elements'), $this->title) ?>">
-                <img src="<?=$this->thumbnail?>" alt="<?=$this->title?>" class="related-project-image" />
+                <img
+                     <?php if ($use_lazyload): ?>
+                     data-src="<?=$this->thumbnail?>"
+                     <?php else: ?>
+                     src="<?=$this->thumbnail?>"
+                     <?php endif; ?>
+                     alt="<?=$this->title?>"
+                     class="related-project-image" />
             </a>
         </figure>
         <?php

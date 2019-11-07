@@ -74,7 +74,7 @@ class Djc_Elements_Project {
     /**
      * @param int $id
      *
-     * @return Djc_Elements_Project|mixed
+     * @return self
      */
     public static function find($id) {
         if (isset(static::$project_cache[$id])) {
