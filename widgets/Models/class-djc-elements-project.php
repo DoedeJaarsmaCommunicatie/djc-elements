@@ -65,10 +65,17 @@ class Djc_Elements_Project {
     }
     
     public function setThumbnail(): void {
-        $url = get_the_post_thumbnail_url($this->id, 'large');
-        $this->thumbnail = $url !== false ?
-            $url :
-            '//via.placeholder.com/1200x600';
+        $this->thumbnail = $this->getThumbnail('large');
+    }
+    
+    public function getThumbnail($size = 'large'): string {
+        $url = get_the_post_thumbnail_url($this->id, $size);
+        
+        if (!$url) {
+            return '//via.placeholder.com/1200x600';
+        }
+        
+        return $url;
     }
     
     /**
