@@ -5,7 +5,7 @@ use Elementor\Widget_Text_Editor;
 
 class Djc_Elements_Widgets_Content extends Widget_Text_Editor {
     public function get_title(): string {
-        return 'DJC Content';
+        return 'DJC ' . parent::get_title();
     }
     
     protected function render(): void {

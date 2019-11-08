@@ -3,7 +3,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Widgets_Heading extends \Elementor\Widget_Heading {
     public function get_title() {
-        return 'DJC ' . __('Heading', 'elementor');
+        return 'DJC ' . parent::get_title();
     }
     
     protected function render() {
