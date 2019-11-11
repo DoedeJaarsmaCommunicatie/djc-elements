@@ -48,7 +48,9 @@ class Djc_Elements_widgets_Portfolio extends \Elementor\Widget_Base {
         $services = get_posts([
             'post_type'     => 'dienst',
             'numberposts'   => -1,
-            'post_parent'   => 0
+            'post_parent'   => 0,
+            'orderby'       => 'menu_order',
+            'order'         => 'ASC'
         ]);
         ?>
         <aside class="filter-wrapper">
