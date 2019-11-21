@@ -3,7 +3,7 @@ defined('ABSPATH') || exit; // Exit if accessed directly.
 
 class Djc_Elements_Employee {
     protected static $employee_cache = [];
-    
+
     public $id;
     public $link;
     public $title;
@@ -11,12 +11,12 @@ class Djc_Elements_Employee {
     public $phone;
     public $excerpt;
     public $thumbnail;
-    
+
     /**
      * @var \WP_Post
      */
     public $post;
-    
+
     /**
      * Djc_Elements_Project_Banner constructor.
      *
@@ -29,7 +29,7 @@ class Djc_Elements_Employee {
             $this->construct($post);
         }
     }
-    
+
     /**
      * @param \WP_Post $post
      */
@@ -43,7 +43,7 @@ class Djc_Elements_Employee {
         $this->setExcerpt();
         $this->setLink();
     }
-    
+
     /**
      * @param int $id
      */
@@ -57,37 +57,37 @@ class Djc_Elements_Employee {
         $this->setExcerpt();
         $this->setLink();
     }
-    
+
     public function setLink(): void {
         $this->link = get_permalink($this->id);
     }
-    
+
     public function setExcerpt(): void {
         $excerpt = $this->post->post_excerpt !== '' ?
             $this->post->post_excerpt :
             $this->post->post_content;
-        
+
         $this->excerpt = wp_trim_words($excerpt, 35);
     }
-    
+
     public function setThumbnail(): void {
         $url = get_the_post_thumbnail_url($this->id);
         $this->thumbnail = $url !== false ?
             $url :
             '//via.placeholder.com/1200x600';
     }
-    
+
     public function getThumbnail($size = 'medium') {
         return wp_get_attachment_image_url(
             get_field('thumbnail', $this->id),
             $size
         );
     }
-    
+
     public function getFirstName() {
         return explode(' ', $this->title)[0];
     }
-    
+
     /**
      * @param int $id
      *
@@ -97,10 +97,10 @@ class Djc_Elements_Employee {
         if (isset(static::$employee_cache[$id])) {
             return static::$employee_cache[$id];
         }
-        
+
         return static::$employee_cache[$id] = new static($id);
     }
-    
+
     /**
      * @param \WP_Post $post
      *
@@ -110,7 +110,7 @@ class Djc_Elements_Employee {
         if (isset(static::$employee_cache[$post->ID])) {
             return static::$employee_cache[$post->ID];
         }
-        
-        return static::$employee_cache[$post->ID] = new static($post->ID);
+
+        return static::$employee_cache[$post->ID] = new static($post);
     }
 }

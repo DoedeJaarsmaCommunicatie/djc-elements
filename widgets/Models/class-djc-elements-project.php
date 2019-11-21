@@ -3,18 +3,18 @@ defined('ABSPATH') || exit; // exit if accessed directly.
 
 class Djc_Elements_Project {
     protected static $project_cache = [];
-    
+
     public $id;
     public $link;
     public $title;
     public $excerpt;
     public $thumbnail;
-    
+
     /**
      * @var \WP_Post
      */
     public $post;
-    
+
     /**
      * Djc_Elements_Project_Banner constructor.
      *
@@ -27,7 +27,7 @@ class Djc_Elements_Project {
             $this->construct($post);
         }
     }
-    
+
     /**
      * @param \WP_Post $post
      */
@@ -39,7 +39,7 @@ class Djc_Elements_Project {
         $this->setExcerpt();
         $this->setLink();
     }
-    
+
     /**
      * @param int $id
      */
@@ -51,33 +51,33 @@ class Djc_Elements_Project {
         $this->setExcerpt();
         $this->setLink();
     }
-    
+
     public function setLink(): void {
         $this->link = get_permalink($this->id);
     }
-    
+
     public function setExcerpt(): void {
         $excerpt = $this->post->post_excerpt !== '' ?
             $this->post->post_excerpt :
             $this->post->post_content;
-        
+
         $this->excerpt = wp_trim_words($excerpt, 35);
     }
-    
+
     public function setThumbnail(): void {
         $this->thumbnail = $this->getThumbnail('large');
     }
-    
+
     public function getThumbnail($size = 'large'): string {
         $url = get_the_post_thumbnail_url($this->id, $size);
-        
+
         if (!$url) {
             return '//via.placeholder.com/1200x600';
         }
-        
+
         return $url;
     }
-    
+
     /**
      * @param int $id
      *
@@ -87,10 +87,10 @@ class Djc_Elements_Project {
         if (isset(static::$project_cache[$id])) {
             return static::$project_cache[$id];
         }
-        
+
         return static::$project_cache[$id] = new static($id);
     }
-    
+
     /**
      * @param \WP_Post $post
      *
@@ -100,7 +100,7 @@ class Djc_Elements_Project {
         if (isset(static::$project_cache[$post->ID])) {
             return static::$project_cache[$post->ID];
         }
-    
-        return static::$project_cache[$post->ID] = new static($post->ID);
+
+        return static::$project_cache[$post->ID] = new static($post);
     }
 }
